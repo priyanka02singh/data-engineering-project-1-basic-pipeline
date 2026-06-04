@@ -1,58 +1,57 @@
 # Modern ELT Pipeline (Project 1)
 
-## 📌 Problem Statement
-Modern data systems require reliable pipelines to extract raw data from multiple sources, transform it into structured formats, and load it into analytical databases for downstream use.
+A production-style ELT pipeline demonstrating orchestration, transformation, and warehouse design using modern data engineering tools.
 
-This project simulates a real-world ELT pipeline that demonstrates how raw data flows through ingestion, orchestration, transformation, and storage layers using industry-standard tools.
+### Key Design Elements:
+- Multi-layer architecture: raw → staging → analytics
+- Airflow-based orchestration for scheduling and dependency management
+- Python + SQL-based transformation layer for data processing
+- Dockerized infrastructure for reproducible environments
+- PostgreSQL used as a lightweight analytical warehouse
 
----
+### Real-World Relevance:
+- Mimics batch ingestion pipelines used in analytics platforms
+- Demonstrates workflow orchestration patterns used in modern data stacks
+- Reflects warehouse-style data modeling for BI/reporting systems
 
 ## 🏗️ System Architecture
 
-
-CSV / API Sources
-↓
-Python Ingestion Layer
-↓
-PostgreSQL (Raw/Staging Tables)
-↓
-Airflow Orchestration (DAGs)
-↓
-Transformation Layer (Python + SQL)
-↓
-Analytics Tables (PostgreSQL)
-
-
----
-
-## ⚙️ Pipeline Components
-
-### 1. Data Ingestion Layer
-- Extracts data from CSV files and APIs
-- Loads raw data into PostgreSQL staging tables
-
-### 2. Orchestration Layer (Airflow)
-- Manages workflow execution using DAGs
-- Ensures task dependencies and scheduling
-- Handles retries and monitoring via Airflow UI
-
-### 3. Transformation Layer
-- Cleans and standardizes raw data
-- Performs SQL-based transformations
-- Prepares analytics-ready datasets
-
-### 4. Storage Layer
-- PostgreSQL used as the central data warehouse
-- Stores both raw and transformed datasets
-
----
-
+            ┌──────────────┐
+            │ CSV / API    │
+            │ Data Sources │
+            └──────┬───────┘
+                   ↓
+        ┌──────────────────────┐
+        │ Python Ingestion     │
+        │ (Extract + Load)     │
+        └────────┬─────────────┘
+                 ↓
+     ┌──────────────────────────┐
+     │ PostgreSQL (Raw Layer)   │
+     │ Staging Tables           │
+     └────────┬─────────────────┘
+              ↓
+     ┌──────────────────────────┐
+     │ Airflow Orchestration    │
+     │ (DAG Scheduling Engine)  │
+     └────────┬─────────────────┘
+              ↓
+     ┌──────────────────────────┐
+     │ Transformation Layer     │
+     │ (Python + SQL Logic)     │
+     └────────┬─────────────────┘
+              ↓
+     ┌──────────────────────────┐
+     │ Analytics Layer          │
+     │ PostgreSQL Tables        │
+     └──────────────────────────┘
+  
 ## 🧰 Tech Stack
-- Python
-- Apache Airflow
-- Docker & Docker Compose
-- PostgreSQL
-- SQL
+- Python (Data Processing)
+- Apache Airflow (Orchestration)
+- Docker & Docker Compose (Containerization)
+- PostgreSQL (Data Warehouse)
+- SQL (Transformations)
 
 ---
 
@@ -64,15 +63,6 @@ Analytics Tables (PostgreSQL)
 4. Apply transformations using Python/SQL  
 5. Store processed data in analytics tables  
 6. Validate output via database queries  
-
----
-
-## 📁 Project Structure
-
-airflow/dags/ → Airflow workflow definitions
-docker-compose.yml → Infrastructure setup (Airflow + Postgres)
-.gitignore → File exclusion rules
-
 
 ---
 
