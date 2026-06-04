@@ -1,0 +1,33 @@
+# Python cache 
+
+__pycache__/ 
+*.pyc 
+*.pyo 
+
+# Environment variables 
+.env 
+
+# Logs 
+logs/ 
+
+# Airflow 
+airflow/logs/ 
+
+# DBT 
+
+target/ 
+
+dbt_packages/ 
+
+# OS files 
+
+.DS_Store 
+__MACOSX 
+
+# Jupyter notebooks checkpoints 
+
+.ipynb_checkpoints/ 
+
+# Docker 
+*.pid
+*.log
