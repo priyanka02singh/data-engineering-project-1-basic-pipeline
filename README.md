@@ -1,30 +1,49 @@
 # Modern ELT Pipeline (Project 1)
 
-## 📌 Overview
-This project demonstrates a simplified end-to-end ELT pipeline using Python, Airflow, Docker, and PostgreSQL. It simulates real-world data engineering workflows including ingestion, orchestration, transformation, and loading into a structured database.
+## 📌 Problem Statement
+Modern data systems require reliable pipelines to extract raw data from multiple sources, transform it into structured formats, and load it into analytical databases for downstream use.
 
-The goal of this project is to showcase production-style data pipeline design using modular components and workflow orchestration.
+This project simulates a real-world ELT pipeline that demonstrates how raw data flows through ingestion, orchestration, transformation, and storage layers using industry-standard tools.
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ System Architecture
 
-The pipeline consists of:
+
+CSV / API Sources
+↓
+Python Ingestion Layer
+↓
+PostgreSQL (Raw/Staging Tables)
+↓
+Airflow Orchestration (DAGs)
+↓
+Transformation Layer (Python + SQL)
+↓
+Analytics Tables (PostgreSQL)
+
+
+---
+
+## ⚙️ Pipeline Components
 
 ### 1. Data Ingestion Layer
-- Extracts data using Python scripts
-- Loads raw data into PostgreSQL
+- Extracts data from CSV files and APIs
+- Loads raw data into PostgreSQL staging tables
 
-### 2. Orchestration Layer
-- Apache Airflow manages workflow execution
-- DAGs handle task dependencies and scheduling
+### 2. Orchestration Layer (Airflow)
+- Manages workflow execution using DAGs
+- Ensures task dependencies and scheduling
+- Handles retries and monitoring via Airflow UI
 
 ### 3. Transformation Layer
-- Data cleaning and preprocessing
-- Structured transformation logic applied before loading
+- Cleans and standardizes raw data
+- Performs SQL-based transformations
+- Prepares analytics-ready datasets
 
 ### 4. Storage Layer
-- PostgreSQL used as the analytical database
+- PostgreSQL used as the central data warehouse
+- Stores both raw and transformed datasets
 
 ---
 
@@ -37,20 +56,23 @@ The pipeline consists of:
 
 ---
 
-## 🔄 Workflow
+## 🔄 End-to-End Data Flow
 
-1. Extract raw data (CSV/API)
-2. Load into staging tables
-3. Transform data using Python/SQL logic
-4. Store processed data in PostgreSQL
-5. Orchestrate using Airflow DAGs
+1. Extract data from CSV/API sources  
+2. Load raw data into staging tables (PostgreSQL)  
+3. Trigger Airflow DAGs for orchestration  
+4. Apply transformations using Python/SQL  
+5. Store processed data in analytics tables  
+6. Validate output via database queries  
 
 ---
 
 ## 📁 Project Structure
-airflow/dags/ → Airflow DAGs
-docker-compose.yml → Infrastructure setup
-.gitignore → Ignored files configuration
+
+airflow/dags/ → Airflow workflow definitions
+docker-compose.yml → Infrastructure setup (Airflow + Postgres)
+.gitignore → File exclusion rules
+
 
 ---
 
